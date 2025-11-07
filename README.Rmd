@@ -1,0 +1,41 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# utils.gt
+
+<!-- badges: start -->
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![CRAN status](https://www.r-pkg.org/badges/version/utils.gt)](https://CRAN.R-project.org/package=utils.gt)
+<!-- badges: end -->
+
+The goal of utils.gt is to enable consistent styling for 'gt' tables, including formatting, spanners, and summary rows. These wrapper functions are designed to be lightweight and easy to extend.
+
+## Installation
+
+You can install the development version of utils.gt from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("pak")
+pak::pak("morethangray/utils.gt")
+```
+
+## Example
+
+This is a basic example which shows you how to solve a common problem:
+
+``` r
+library(utils.gt)
+## basic example code
+```
