@@ -148,9 +148,9 @@ tidyselect_gt_column_name <- function(
 #' This function identifies columns containing numeric, integer, and percentage
 #' values based on naming conventions and applies corresponding `gt` formatting
 #' functions.
-#' - Columns containing the pattern in `config$format_cols_percent` are formatted as percentages.
-#' - Columns containing the pattern in `config$format_cols_number` are formatted as numbers.
-#' - Columns containing the pattern in `config$format_cols_integer` are formatted as integers.
+#' - Columns containing the pattern in `labels$format_cols_percent` are formatted as percentages.
+#' - Columns containing the pattern in `labels$format_cols_number` are formatted as numbers.
+#' - Columns containing the pattern in `labels$format_cols_integer` are formatted as integers.
 #'
 #' @return A modified `gt` table with formatted numeric and percentage columns.
 #' @examples
@@ -165,13 +165,13 @@ fmt_gt_units <- function(
 
   gt_extract <- gt_table |> extract_body(incl_stub_cols = FALSE)
   columns_percent <- gt_extract |>
-    select(contains(config$format_cols_percent)) |>
+    select(contains(labels$format_cols_percent)) |>
     names()
   columns_number <- gt_extract |>
-    select(contains(config$format_cols_number)) |>
+    select(contains(labels$format_cols_number)) |>
     names()
   columns_integer <- gt_extract |>
-    select(contains(config$format_cols_integer)) |>
+    select(contains(labels$format_cols_integer)) |>
     names()
   gt <- gt_table |>
     gt::fmt_percent(columns = columns_percent, decimals = 0) |>

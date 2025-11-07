@@ -25,9 +25,9 @@ This function identifies columns containing numeric, integer, and percentage
 values based on naming conventions and applies corresponding \code{gt} formatting
 functions.
 \itemize{
-\item Columns containing the pattern in \code{config$format_cols_percent} are formatted as percentages.
-\item Columns containing the pattern in \code{config$format_cols_number} are formatted as numbers.
-\item Columns containing the pattern in \code{config$format_cols_integer} are formatted as integers.
+\item Columns containing the pattern in \code{labels$format_cols_percent} are formatted as percentages.
+\item Columns containing the pattern in \code{labels$format_cols_number} are formatted as numbers.
+\item Columns containing the pattern in \code{labels$format_cols_integer} are formatted as integers.
 }
 }
 \examples{

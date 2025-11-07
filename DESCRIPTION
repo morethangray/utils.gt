@@ -8,7 +8,12 @@ Description: Helper functions to create color palettes and consistent
     rows. Designed to be lightweight and easy to extend.
 License: MIT + file LICENSE
 Imports:
-    dplyr 
+    dplyr, 
+    glue, 
+    gt, 
+    rlang, 
+    stringr,
+    tidyselect
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
