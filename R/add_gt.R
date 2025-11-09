@@ -128,7 +128,7 @@ add_gt_grand_summary_row_mean <- function(
   columns_number <- gt_table |>
     tidyselect_gt_column_name(
       selection_type = selection_type,
-      columns = labels$format_cols_percent
+      columns = labels$format_cols_number
     )
   columns_select <- gt_table |>
     tidyselect_gt_column_name(
