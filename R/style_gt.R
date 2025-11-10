@@ -192,6 +192,7 @@ style_gt_grand_summary_row <- function(
 #' @param font_size Size key in the configuration list. Defaults to `"size_xl"`.
 #'
 #' @return A `gt` table with styled row group cells.
+#' @export
 style_gt_row_group <- function(
     gt_table,
     font_transform = "capitalize",
@@ -309,9 +310,7 @@ style_gt_spanner <- function(
 #' @examples
 #' # style_gt_effort(gt_table)
 #' @export
-style_gt_effort <- function(
-  gt_table
-) {
+style_gt_effort <- function(gt_table) {
   config <- get("gt_config", envir = asNamespace("utils.gt"))
 
   columns_muted <- c("count")
@@ -354,6 +353,7 @@ style_gt_effort <- function(
 #' @param gt_table A `gt` table object.
 #'
 #' @return A `gt` table styled for diet type.
+#' @export
 style_gt_diet <- function(gt_table){
 
   config <- get("gt_config", envir = asNamespace("utils.gt"))
@@ -386,3 +386,61 @@ style_gt_diet <- function(gt_table){
 
   return(gt)
 }
+
+#' Apply standard styling for image count gt tables
+#'
+#' Applies consistent font styles and column widths for summary tables with image count.
+#'
+#' @param gt_table A `gt` table object.
+#'
+#' @return A `gt` table styled for image count.
+#' @export
+style_gt_images <- function(gt_table){
+
+  columns_muted <- c("mean", "minimum", "maximum")
+
+  gt <- gt_table |>
+
+    # Emphasize total columns
+    utils.gt::style_gt_column_labels_bold(
+      columns = "_total",
+      font_transform = NULL,
+      font_name = "font_semibold",
+      font_color = "color_font_dark"
+    ) |>
+    utils.gt::style_gt_cells(
+      columns = "total",
+      font_name = "font_semibold",
+      font_color = "color_font_dark",
+      font_size = "size_base"
+    )  |>
+
+    # Lighter color and smaller font for summary stats
+    utils.gt::style_gt_cells(
+      columns = columns_muted,
+      font_color = "color_font_light",
+      font_size = "size_s"
+    )  |>
+
+    gt::cols_width(
+      stub() ~ px(50),
+      starts_with("empty") ~ px(25),
+      ends_with("percent") ~ px(40),
+      ends_with("locations_n") ~ px(80),
+      ends_with("total") ~ px(50),
+      ends_with(c("mean", "minimum", "maximum")) ~ px(40)
+    ) |>
+    gt::cols_label(
+      starts_with(c("empty", "Empty")) ~ "",
+      starts_with("locations_n") ~ "Locations",
+      ends_with("percent") ~ "% All",
+      ends_with("total") ~ "Total",
+      ends_with("mean") ~ "Mean",
+      ends_with("minimum") ~ "Min.",
+      ends_with("maximum") ~ "Max."
+    )
+
+  return(gt)
+
+}
+

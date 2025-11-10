@@ -179,3 +179,41 @@ fmt_gt_units <- function(
     gt::fmt_integer(columns = columns_integer)
   return(gt)
 }
+
+#' Update default column labels
+#'
+#' Automatically formats numeric columns in a `gt` table based on patterns
+#' defined in a configuration list.
+#'
+#' @param new_labels A named list of new labels to apply to gt_labels.
+#' @param labels A list containing keys for column name patterns.
+#' Default values are defined in make_gt_labels()
+#'
+#' @details
+#' This function revises the existing gt_labels list.
+#'
+#' @return A modified `gt_labels` list.
+#' @export
+update_gt_labels <- function(new_labels, labels = NULL) {
+
+  if(is.null(labels)) labels <- get("gt_labels", envir = asNamespace("utils.gt"))
+
+  # Validate input
+  if (!is.list(new_labels)) {
+    stop("`new_labels` must be a list.")
+  }
+
+  # Only update recognized fields
+  valid_names <- names(gt_labels)
+  unknown <- setdiff(names(new_labels), valid_names)
+  if (length(unknown) > 0) {
+    warning("Ignoring unrecognized field(s): ", paste(unknown, collapse = ", "))
+  }
+
+  # Update only matching names
+  for (nm in intersect(names(new_labels), valid_names)) {
+    gt_labels[[nm]] <- unique(c(gt_labels[[nm]], new_labels[[nm]]))
+  }
+
+  return(gt_labels)
+}
