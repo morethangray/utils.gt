@@ -190,10 +190,8 @@ style_gt_grand_summary_row <- function(
 #' @param font_name Font key in the configuration list. Defaults to `"font_medium"`.
 #' @param font_color Color key in the configuration list. Defaults to `"color_font_medium"`.
 #' @param font_size Size key in the configuration list. Defaults to `"size_xl"`.
-#' @param fill_color Background color key. Defaults to `"color_grand_summary_row"`.
 #'
 #' @return A `gt` table with styled row group cells.
-
 style_gt_row_group <- function(
     gt_table,
     font_transform = "capitalize",
@@ -363,9 +361,9 @@ style_gt_diet <- function(gt_table){
   color_carn <- gt_config$color_carn
   color_herb <- gt_config$color_herb
   color_omni <- gt_config$color_omni
-  color_carn_fill <- colorspace::adjust_transparency(color_carn, 0.1)
-  color_herb_fill <- colorspace::adjust_transparency(color_herb, 0.1)
-  color_omni_fill <- colorspace::adjust_transparency(color_omni, 0.1)
+  color_carn_fill <- gt_config$color_carn_fill
+  color_herb_fill <- gt_config$color_herb_fill
+  color_omni_fill <- gt_config$color_omni_fill
 
   gt <-   gt_table |>
     # Define styles for row_group labels

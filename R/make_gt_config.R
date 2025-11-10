@@ -22,6 +22,9 @@ make_gt_config <- function() {
   color_carn <- "#D68032"
   color_herb <- "#499894"
   color_omni <- "#79706E"
+  color_carn_fill <- "#D680321A"
+  color_herb_fill <- "#4998941A"
+  color_omni_fill <- "#79706E1A"
   color_font_base <- "black"
   color_font_dark <- "gray15"
   color_font_medium <- "gray30"
@@ -50,6 +53,9 @@ make_gt_config <- function() {
       color_carn = color_carn,
       color_herb = color_herb,
       color_omni = color_omni,
+      color_carn_fill = color_carn_fill,
+      color_herb_fill = color_herb_fill,
+      color_omni_fill = color_omni_fill,
       color_font_base = color_font_base,
       color_font_dark = color_font_dark,
       color_font_medium = color_font_medium,
