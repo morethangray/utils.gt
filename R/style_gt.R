@@ -181,6 +181,41 @@ style_gt_grand_summary_row <- function(
     )
 }
 
+#' Style the row group in a gt table
+#'
+#' Formats the row group with custom font and font color settings.
+#'
+#' @param gt_table A `gt` table object.
+#' @param font_transform Text transformation (e.g., `"capitalize"`). Defaults to `"capitalize"`.
+#' @param font_name Font key in the configuration list. Defaults to `"font_medium"`.
+#' @param font_color Color key in the configuration list. Defaults to `"color_font_medium"`.
+#' @param font_size Size key in the configuration list. Defaults to `"size_xl"`.
+#' @param fill_color Background color key. Defaults to `"color_grand_summary_row"`.
+#'
+#' @return A `gt` table with styled row group cells.
+
+style_gt_row_group <- function(
+    gt_table,
+    font_transform = "capitalize",
+    font_name = "font_medium",
+    font_color = "color_font_medium",
+    font_size = "size_xl"){
+
+  config <- get("gt_config", envir = asNamespace("utils.gt"))
+
+  gt_table |>
+    tab_style(
+      locations = cells_row_groups(groups = everything()),
+      style = list(
+        cell_text(font = config[[font_name]],
+                  color = config[[font_color]],
+                  size = px(config[[font_size]]),
+                  transform = font_transform),
+        cell_borders(sides = "right", weight = px(0))
+      )
+    )
+}
+
 #' Style the stubhead in a gt table
 #'
 #' Formats the stubhead (header above the stub column) with font and color settings.
@@ -311,5 +346,45 @@ style_gt_effort <- function(
       ends_with("percent") ~ "%",
       ends_with("count") ~ "Days"
     )
+  return(gt)
+}
+
+#' Apply standard styling for diet (carnivore, omnivore, herbivore) gt tables
+#'
+#' Applies consistent colors and font styles for summary tables with diet type.
+#'
+#' @param gt_table A `gt` table object.
+#'
+#' @return A `gt` table styled for diet type.
+style_gt_diet <- function(gt_table){
+
+  config <- get("gt_config", envir = asNamespace("utils.gt"))
+
+  color_carn <- gt_config$color_carn
+  color_herb <- gt_config$color_herb
+  color_omni <- gt_config$color_omni
+  color_carn_fill <- colorspace::adjust_transparency(color_carn, 0.1)
+  color_herb_fill <- colorspace::adjust_transparency(color_herb, 0.1)
+  color_omni_fill <- colorspace::adjust_transparency(color_omni, 0.1)
+
+  gt <-   gt_table |>
+    # Define styles for row_group labels
+    style_gt_row_group() |>
+    tab_style(
+      locations = cells_row_groups(groups = "Carnivore"),
+      style = list(
+        cell_text(color = color_carn),
+        cell_fill(color = color_carn_fill))) |>
+    tab_style(
+      locations = cells_row_groups(groups = "Herbivore"),
+      style = list(
+        cell_text(color = color_herb),
+        cell_fill(color = color_herb_fill))) |>
+    tab_style(
+      locations = cells_row_groups(groups = "Omnivore"),
+      style = list(
+        cell_text(color = color_omni),
+        cell_fill(color = color_omni_fill)))
+
   return(gt)
 }
