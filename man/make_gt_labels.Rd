@@ -13,7 +13,6 @@ make_gt_labels(
   format_cols_integer = NULL,
   format_cols_percent = NULL,
   decimals_number = NULL,
-  decimals_integer = NULL,
   decimals_percent = NULL,
   summarize_cols_total = NULL,
   summarize_cols_mean = NULL
@@ -35,8 +34,6 @@ make_gt_labels(
 \item{format_cols_percent}{Character vector of columns to format as percentage (e.g., percent).}
 
 \item{decimals_number}{Numeric vector of number of decimals to use for numeric values.}
-
-\item{decimals_integer}{Numeric vector of number of decimals to use for integer values.}
 
 \item{decimals_percent}{Numeric vector of number of decimals to use for percent values.}
 

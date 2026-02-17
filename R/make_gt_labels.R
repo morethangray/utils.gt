@@ -10,7 +10,6 @@
 #' @param format_cols_integer Character vector of columns to format as integer (e.g., minimum, maximum).
 #' @param format_cols_percent Character vector of columns to format as percentage (e.g., percent).
 #' @param decimals_number Numeric vector of number of decimals to use for numeric values.
-#' @param decimals_integer Numeric vector of number of decimals to use for integer values.
 #' @param decimals_percent Numeric vector of number of decimals to use for percent values.
 #' @param summarize_cols_total Character vector of columns to summarize in total rows.
 #' @param summarize_cols_mean Character vector of columns to summarize in mean rows.
@@ -26,7 +25,6 @@ make_gt_labels <- function(
     format_cols_integer = NULL,
     format_cols_percent = NULL,
     decimals_number = NULL,
-    decimals_integer = NULL,
     decimals_percent = NULL,
     summarize_cols_total = NULL,
     summarize_cols_mean = NULL
@@ -42,7 +40,6 @@ make_gt_labels <- function(
   format_cols_percent <- unique(c("percent", format_cols_percent))
 
   decimals_number <- 0
-  decimals_integer <- 1
   decimals_percent <- 0
 
   ignore_cols <- unique(c("empty", group_name, ignore_cols))
@@ -63,7 +60,6 @@ make_gt_labels <- function(
       format_cols_integer = format_cols_integer,
       format_cols_percent = format_cols_percent,
       decimals_number = decimals_number,
-      decimals_integer = decimals_integer,
       decimals_percent = decimals_percent,
       summarize_cols_total = summarize_cols_total,
       summarize_cols_mean = summarize_cols_mean,
