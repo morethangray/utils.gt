@@ -379,12 +379,48 @@ style_gt_diet <- function(gt_table){
         cell_text(color = color_herb),
         cell_fill(color = color_herb_fill))) |>
     tab_style(
-      locations = cells_row_groups(groups = "Omnivore"),
+      locations = cells_row_groups(groups = contains(c("Omnivore", "Mesocarnivore"))),
       style = list(
         cell_text(color = color_omni),
         cell_fill(color = color_omni_fill)))
 
   return(gt)
+}
+
+#' Apply lighter styling to zeros for gt tables
+#'
+#' @param gt_table A `gt` table object.
+#'
+#' @returns  A `gt` table styled for zero values.
+#' @export
+style_gt_zeros <- function(gt_table) {
+
+  config <- get("gt_config", envir = asNamespace("utils.gt"))
+  body_df <- gt_table[["_data"]]
+  body_cols <- names(body_df)
+
+  # Per-column adjustments: small-value replacement and zero styling
+  for (col in body_cols) {
+    x <- body_df[[col]]
+
+    # skip non-numeric columns
+    if (!is.numeric(x) && !is.integer(x)) next
+
+    # rows where value == 0  (handle NA safely)
+    zero_rows <- which(!is.na(x) & x == 0)
+    if (length(zero_rows) > 0) {
+      gt_table <- gt_table |>
+        gt::tab_style(
+          style = gt::cell_text(color = config$color_border),
+          locations = gt::cells_body(
+            columns = gt::all_of(col),
+            rows = zero_rows
+          )
+        )
+    }
+  }
+
+  gt_table
 }
 
 #' Apply standard styling for image count gt tables

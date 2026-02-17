@@ -30,8 +30,8 @@ make_gt_config <- function() {
   color_font_medium <- "gray30"
   color_font_light <- "gray50"
   color_font_lightest <- "gray60"
-  color_spanner_group <- "gray30"
-  color_spanner_group_light <- "gray50"
+  color_spanner_group <- color_font_medium
+  color_spanner_group_light <- color_font_light
   color_border <- "#d3d3d3"
   color_grand_summary_row <- "gray96"
   color_summary_row <- "gray98"

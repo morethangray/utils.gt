@@ -174,9 +174,9 @@ fmt_gt_units <- function(
     select(contains(labels$format_cols_integer)) |>
     names()
   gt <- gt_table |>
-    gt::fmt_percent(columns = columns_percent, decimals = 0) |>
-    gt::fmt_number(columns = columns_number, decimals = 0) |>
-    gt::fmt_integer(columns = columns_integer)
+    gt::fmt_percent(columns = columns_percent, decimals = labels$decimals_percent) |>
+    gt::fmt_number(columns = columns_number, decimals = labels$decimals_number) |>
+    gt::fmt_integer(columns = columns_integer, decimals = labels$decimals_integer)
   return(gt)
 }
 
